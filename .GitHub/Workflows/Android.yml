@@ -1,0 +1,27 @@
+name: Build Android APK
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - name: Install Cordova
+        run: npm install -g cordova
+      - name: Install dependencies
+        run: npm ci || npm install
+      - name: Add Android platform
+        run: cordova platform add android
+      - name: Build release APK
+        run: cordova build android --release -- --packageType=apk
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: BikepAPP-APK
+          path: platforms/android/app/build/outputs/apk/release/*.apk
