@@ -1,0 +1,15 @@
+{
+  "name": "bikepapp-check",
+  "version": "1.0.0",
+  "description": "Camping-Checkliste für Radtouren",
+  "cordova": {
+    "plugins": {},
+    "platforms": ["android"]
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "cordova run android",
+    "build": "cordova build android --release -- --packageType=apk"
+  }
+}
